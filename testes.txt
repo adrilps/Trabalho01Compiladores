@@ -1,0 +1,33 @@
+a = 10							//instancia variaveis							1
+b = 50							//instancia variaveis							2
+c = 100							//instancia variaveis							3		
+d = 0							//instancia variaveis							4
+y = 0.5							//instancia variaveis							5
+if((b-a) < (c)) then print(111);			//funcionamento correto if						6
+if((b-a) < (c); j = 10;) then print(111);		//funcionamento incorreto if, list ao inves de exp			7
+if((b-a) < (c)) print(111);				//funcionamento incorreto if, sem then					8
+if((b-a) > (c)) then print(111); else print(222);	//funcionamento correto if-else						9
+while(a<b) do a = a + 10; 				//funcionamento correto while						10
+while(a<b; j = 10;) do a = a + 10;			//funcionamento incorreto while, list ao inves de exp			11
+a = 10							//reset do valor controle 'a'						12
+for (i = 10;i< 50; i = i + 10) print(111);		//funcionamento correto for						13
+for (i = 10;i< 50; i = i + 10,i = i + 20) print(111);	//funcionamento correto for						14
+if(a < b) then print(111);				//funcionamento correto '>'						15
+if(c > b) then print(111);				//funcionamento correto '<'						16
+if(a <> b) then print(111);				//funcionamento correto '<>'						17
+if(a == 10) then print(111);				//funcionamento correto '=='						18
+if((a >= 10) and (a >= y)) then print(111);		//funcionamento correto '>='						19
+if((b <= 50) and (a <= c)) then print(111);		//funcionamento correto '<='						20
+if((a == 10) and (b == 50)) then print(111);		//funcionamento correto and						21
+if((a == 20) or (b == 50)) then print(111);		//funcionamento correto or						22
+if((sqrt(c) == a)) then print(sqrt(c));			//funcionamento correto func nativa sqrt				23
+print(exp(1))						//funcionamento correto func nativa exp					24
+print(log(exp(1)))					//funcionamento correto func nativa log					25
+print(111)						//funcionamento correto func nativa print				26
+print(1+1)						//funcionamento correto op aritmetico '+'				27
+print(2-1)						//funcionamento correto op aritmetico '-'				28
+print(2*10)						//funcionamento correto op aritmetico '*'				29
+print(20/10)						//funcionamento correto op aritmético '/'				30
+let multiplica100 (valor) = print(valor * 100);		//funcionamento correto let e funcao usuário				31
+multiplica100 (2)					//funcionamento correto let e funcao usuário				32
+let 212(131) = i + 1;					//funcionamento incorreto correto let, number ao inves de name		33

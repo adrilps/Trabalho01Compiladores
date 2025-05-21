@@ -9,6 +9,7 @@
 #include "bison-calc.h"
 
 extern FILE *yyin;
+extern FILE *yyout;
 
 /* funções em C para TS */
 /* função hashing */
@@ -262,8 +263,6 @@ double eval(struct ast *a)
         case '4': v = (eval(a->l) == eval(a->r)) ? 1 : 0; break;
         case '5': v = (eval(a->l) >= eval(a->r)) ? 1 : 0; break;
         case '6': v = (eval(a->l) <= eval(a->r)) ? 1 : 0; break;
-        //case '7': v = (eval(a->l) && eval(a->r)) ? 1 : 0; break;
-        // case '8': v = (eval(a->l) || eval(a->r)) ? 1 : 0; break;
 
         /* controle de fluxo */
         /* if / then / else */
@@ -435,16 +434,20 @@ void yyerror(char *s, ...)
 int main(int argc, char **argv) {
     if (argc > 1) {
         yyin = fopen(argv[1], "r");
-        if (!yyin) {
-            printf("O arquivo nao pode ser aberto");
+        yyout = fopen("out.txt","w");
+        if (!yyin || !yyout) {
+            printf("O arquivo de entrada ou saida nao puderam ser abertos");
             return 0;
         }
+        dup2(fileno(yyout), fileno(stdout));
+        dup2(fileno(yyout), fileno(stderr));
     }
 
     yyparse();
 
     if (yyin != stdin) {
         fclose(yyin);
+        fclose(yyout);
     }
     return 0;
 }
