@@ -8,6 +8,8 @@
 #include <math.h>
 #include "bison-calc.h"
 
+extern FILE *yyin;
+
 /* funções em C para TS */
 /* função hashing */
 
@@ -429,8 +431,20 @@ void yyerror(char *s, ...)
     fprintf(stderr, "\n");
 }
 
-int main()
-{
-    printf("> ");
-    return yyparse();
+
+int main(int argc, char **argv) {
+    if (argc > 1) {
+        yyin = fopen(argv[1], "r");
+        if (!yyin) {
+            printf("O arquivo nao pode ser aberto");
+            return 0;
+        }
+    }
+
+    yyparse();
+
+    if (yyin != stdin) {
+        fclose(yyin);
+    }
+    return 0;
 }

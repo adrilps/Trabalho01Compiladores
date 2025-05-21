@@ -64,6 +64,8 @@ EXP ([Ee][-+]?[0-9]+)
 
 [ \t]       { /* ignora */ }    /* Espaços em branco */
 
+\r          { /* ignora */ }    /* Carriage return do CRLF do Widows*/
+
 \\\n        { printf("c> "); }  /* Continuação de linha com barra invertida */
 
 \n          { return EOL; } /* Fim de linha */
